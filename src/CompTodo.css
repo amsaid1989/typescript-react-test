@@ -1,0 +1,6 @@
+.todo-item {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1em;
+    justify-content: space-between;
+}
