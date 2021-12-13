@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import "./App.css";
-import CompTodoList from "./CompTodoList";
+import CompTodo from "./CompTodo";
 import { Todo, TodoList } from "./interfaces";
 
 function App() {
@@ -70,6 +70,7 @@ function App() {
                     id="todo-text"
                     value={text}
                     onChange={handleTextChange}
+                    data-testid="todo-input"
                 />
                 <button
                     ref={buttonRef}
@@ -81,11 +82,20 @@ function App() {
             </section>
 
             {todos && (
-                <CompTodoList
-                    todos={todos}
-                    changeHandler={toggleTodo}
-                    deleteHandler={deleteTodo}
-                />
+                <section>
+                    <ul className="todo-list">
+                        {todos.map((todo, index) => {
+                            return (
+                                <CompTodo
+                                    key={todo.id}
+                                    todo={todo}
+                                    changeHandler={toggleTodo}
+                                    deleteHandler={deleteTodo}
+                                />
+                            );
+                        })}
+                    </ul>
+                </section>
             )}
         </main>
     );
